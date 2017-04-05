@@ -1,8 +1,8 @@
-About shadowsocks-python manyuser
+About Shadowsocks-python Manyuser
 =================================
 This is a multi-user version of shadowsocks-python. Requires a mysql database or a panel which supports SS MU API.
 
-Install instruction for database user
+Install Instructions for Database User
 -------------------------------------
 1. install MySQL Server 5.x.x
 2. install cymysql library by `pip install cymysql`
@@ -11,7 +11,7 @@ Install instruction for database user
 5. copy `config_example.py` to `config.py` and edit it following the notes inside (but DO NOT delete the example file). You do not need to edit the API section.
 6. TestRun `cd shadowsocks && python servers.py` (not server.py)
 
-Install instruction for MU API user
+Install Instructions for MU API User
 -----------------------------------
 1. install a panel which supports MU API (the known one is [SS-Panel V3](https://github.com/orvice/ss-panel))
 2. copy `config_example.py` to `config.py` and edit it following the notes inside (but DO NOT delete the example file). You do not need to edit the MySQL Database section.
@@ -22,9 +22,9 @@ Install Instructions for Docker User
 
 1. build the docker: `docker build -t shadowsocks-mu .`
 2. create a config file as above
-3. run the docker (random free ports will be allocated): `docker run -v /PATH/TO/CONFIG/FILE:/shadowsocks/shadowsocks/config.py -p PORT_START-PORT_END shadowsocks-mu`
+3. run the docker (random free ports will be allocated): `docker run -it -v /PATH/TO/CONFIG/FILE:/shadowsocks/shadowsocks/config.py -p PORT_START-PORT_END shadowsocks-mu`
    
-   [OR] to use fixed ports: `docker run -v /PATH/TO/CONFIG/FILE:/shadowsocks/shadowsocks/config.py -p PORT_START-PORT_END:PORT_START-PORT_END shadowsocks-mu`
+   [OR] to use fixed ports: `docker run -it -v /PATH/TO/CONFIG/FILE:/shadowsocks/shadowsocks/config.py -p PORT_START-PORT_END:PORT_START-PORT_END shadowsocks-mu`
    
    *Reminder: `/PATH/TO/CONFIG/FILE` should be an absolute path*
 
