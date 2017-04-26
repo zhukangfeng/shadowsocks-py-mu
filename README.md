@@ -2,23 +2,27 @@ About Shadowsocks-python Manyuser
 =================================
 This is a multi-user version of shadowsocks-python. Requires a mysql database or a panel which supports SS MU API.
 
+Requirement
+-----------
+1. Python >= 2.5 (python=2.5 need to install extra library: `pip install simplejson`)
+2. MySQL >= 5 (if using database)
+3. A Panel with [MU API](https://github.com/orvice/ss-panel/wiki/Mu-V2), such as [SS-Panel V3](https://github.com/orvice/ss-panel). (if using MU API)
+
 Install Instructions for Database User
--------------------------------------
-1. install MySQL Server 5.x.x
-2. install cymysql library by `pip install cymysql`
-3. create a database named `shadowsocks`
-4. import `shadowsocks.sql` into `shadowsocks`
-5. copy `config_example.py` to `config.py` and edit it following the notes inside (but DO NOT delete the example file). You do not need to edit the API section.
-6. TestRun `cd shadowsocks && python servers.py` (not server.py)
+--------------------------------------
+1. install `cymysql` library by `pip install cymysql`
+2. create a database named `shadowsocks`
+3. import `shadowsocks.sql` into the `shadowsocks` database
+4. copy `config_example.py` to `config.py` and edit it following the notes inside (but DO NOT delete the example file). You *DO NOT* need to edit the API section.
+5. TestRun `cd shadowsocks && python servers.py` (not server.py)
 
 Install Instructions for MU API User
 -----------------------------------
-1. install a panel which supports MU API (the known one is [SS-Panel V3](https://github.com/orvice/ss-panel))
-2. copy `config_example.py` to `config.py` and edit it following the notes inside (but DO NOT delete the example file). You do not need to edit the MySQL Database section.
-3. TestRun `cd shadowsocks && python servers.py` (not server.py)
+1. copy `config_example.py` to `config.py` and edit it following the notes inside (but DO NOT delete the example file). You *DO NOT* need to edit the Database section.
+2. TestRun `cd shadowsocks && python servers.py` (not server.py)
 
 Install Instructions for Docker User
---------------------------
+------------------------------------
 
 1. build the docker: `docker build -t shadowsocks-mu .`
 2. create a config file as above
@@ -30,10 +34,10 @@ Install Instructions for Docker User
 
 Reminders for Windows User
 --------------------------
-1. install pyuv by `pip install pyuv`
+1. install `pyuv` library by `pip install pyuv`
 2. if git is not configured in your `%PATH%` environmental variable, you can create a file named `.nogit` to avoid using `git describe`
 
-if no exception thown the server will startup. By default logging is enabled.
+If no exceptions are thrown, the server will startup. By default, logging is enabled.
 You should be able to see this kind of thing in `shadowsocks.log`(default log file name)
 ```
 Jun 24 01:06:08 INFO -----------------------------------------
@@ -72,17 +76,17 @@ Database user table column
 
 `t` last connecting time
 
-`u` no usage for this version of shadowsocks (kept at 0) but essential for some panels
+`u` no usage for this shadowsocks server (kept unchanged) but essential for some panels
 
-`d` upload + download transfer
+`d` accumulated upload + download data transfer
 
-`method` encryption method
+`method` custom encryption method
 
-`transfer_enable` if u + d > transfer_enable this server will be stop (method del_server_out_of_bound_safe in dbtransfer.py)
+`transfer_enable` maximum accumulated data transfer allowed - if `u` + `d` > `transfer_enable`, service for this client will be stopped (other clients are not affected)
 
-Compatibility with other frontend UIs
--------------------------------------
-It is fully compatible (SS MU API) with [ss-panel V3](https://github.com/orvice/ss-panel).
+Compatibility with frontend UIs
+-------------------------------
+It is fully compatible (through [MU API *V2*](https://github.com/orvice/ss-panel/wiki/Mu-V2)) with [ss-panel V3](https://github.com/orvice/ss-panel) .
 
 Open source license
 -------------------
