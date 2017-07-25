@@ -11,8 +11,8 @@ Requirement
 Install Instructions for Database User
 --------------------------------------
 1. install `cymysql` library by `pip install cymysql`
-2. create a database named `shadowsocks`
-3. import `shadowsocks.sql` into the `shadowsocks` database
+2. create a database named `shadowsocks`（如果是和ss-panel一起使用，那么不要再创建数据库，直接连接ss-panel的数据库)
+3. import `shadowsocks.sql` into the `shadowsocks` database（如果是和ss-panel一起使用，那么不要再创建数据库，直接连接ss-panel的数据库)
 4. copy `config_example.py` to `config.py` and edit it following the notes inside (but DO NOT delete the example file). You *DO NOT* need to edit the API section.
 5. TestRun `cd shadowsocks && python servers.py` (not server.py)
 
